@@ -1,0 +1,44 @@
+<launch>
+  <arg name="world_name" value="$(find oryxbot_description)/world/final_task.world" />
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(arg world_name)" />
+  </include>
+  <param name="robot_description"
+    command="$(find xacro)/xacro $(find oryxbot_description)/xacro/oryxbot.xacro sim:=1" />
+  <node
+    name="spawn_model"
+    pkg="gazebo_ros"
+    type="spawn_model"
+    args="-param robot_description -urdf -model oryxbot"
+    output="screen" />
+  <rosparam command="load" file="$(find oryxbot_description)/config/arm_controllers.yaml"/>
+  <node name="spawner" pkg="controller_manager" type="spawner" respawn="false"
+    output="screen" ns="/swiftpro"
+    args="joint_state_controller 
+    joint1_position_controller 
+    joint2_position_controller 
+    joint3_position_controller 
+    joint4_position_controller 
+    joint5_position_controller 
+    joint6_position_controller 
+    joint7_position_controller  
+    joint8_position_controller 
+    joint9_position_controller 
+    virtual_end_position_controller" />
+    <node
+      name="arm_state_publisher"
+      pkg="robot_state_publisher"
+      type="robot_state_publisher" >
+      <remap from="joint_states" to="/swiftpro/joint_states"/>
+    </node>
+    <node
+      name="robot_state_publisher"
+      pkg="robot_state_publisher"
+      type="robot_state_publisher" >
+      <!-- <remap from="joint_states" to="/swiftpro/joint_states"/> -->
+    </node>
+    <!-- 手臂控制 -->
+    <!-- <include file="$(find oryxbot_description)/launch/swiftpro_control.launch"/> -->
+  <!-- <node pkg="rviz" type="rviz" name="rviz"
+    args="-d $(find oryxbot_description)/config/gazebo.rviz" /> -->
+</launch>

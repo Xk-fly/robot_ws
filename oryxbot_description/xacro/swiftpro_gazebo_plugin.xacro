@@ -1,0 +1,212 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="swiftpro_gazebo">
+  <xacro:macro name="swiftpro_gazebo_plugin" params="prefix">
+    <gazebo>
+      <plugin name="${prefix}_gazebo_ros_control" filename="libgazebo_ros_control.so">
+        <robotNamespace>/swiftpro</robotNamespace>
+        <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+      </plugin>
+    </gazebo>
+    <gazebo>
+      <plugin name="${prefix}_vacuum_gripper" filename="libgazebo_ros_vacuum_gripper.so">
+        <robotNamespace>${prefix}</robotNamespace>
+        <bodyName>${prefix}/virtual_end_effector</bodyName>
+        <topicName>grasping</topicName>
+        <maxForce>200</maxForce>
+        <maxDistance>0.05</maxDistance>
+        <minDistance>0.01</minDistance>
+      </plugin>
+    </gazebo>
+    <transmission name="${prefix}_tran1">
+      <type>transmission_interface/SimpleTransmission</type>
+      <actuator name="${prefix}_motor1">
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+      <joint name="${prefix}/arm_joint1">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </joint>
+    </transmission>
+  
+    <transmission name="${prefix}_tran2">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="${prefix}/arm_joint2">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="${prefix}_motor2">
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+  
+    <transmission name="${prefix}_tran3">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="${prefix}/arm_joint3">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="${prefix}_motor3">
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+
+    <transmission name="${prefix}_tran4">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="${prefix}/arm_joint4">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="${prefix}_motor4">
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+
+    <transmission name="${prefix}_tran5">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="${prefix}/arm_joint5">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="${prefix}_motor5">
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+
+    <transmission name="${prefix}_tran6">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="${prefix}/arm_joint6">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="${prefix}_motor6">
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+
+    <transmission name="${prefix}_tran7">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="${prefix}/arm_joint7">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="${prefix}_motor7">
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+  
+    <transmission name="${prefix}_tran8">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="${prefix}/arm_joint8">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="${prefix}_motor8">
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+
+    <transmission name="${prefix}_tran9">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="${prefix}/arm_joint9">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="${prefix}_motor9">
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+    <transmission name="${prefix}_end_tran">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="${prefix}/virtual_end_joint">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="${prefix}_end_motor">
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+
+    <!--base_link-->
+    <gazebo reference="${prefix}/base_link">
+      <material>Gazebo/Grey</material>
+      <mu1>0.8</mu1>
+      <mu2>0.8</mu2>
+      <minDepth>0.001</minDepth>
+    </gazebo>
+
+    <!--link1-->
+    <gazebo reference="${prefix}/arm_link1">
+      <material>Gazebo/DarkGrey</material>
+      <mu1>0.8</mu1>
+      <mu2>0.8</mu2>
+      <minDepth>0.001</minDepth>
+    </gazebo>
+
+    <!--link2-->
+    <gazebo reference="${prefix}/arm_link2">
+      <material>Gazebo/Grey</material>
+      <mu1>0.8</mu1>
+      <mu2>0.8</mu2>
+      <minDepth>0.001</minDepth>
+    </gazebo>
+
+    <!--link3-->
+    <gazebo reference="${prefix}/arm_link3">
+      <material>Gazebo/DarkGrey</material>
+      <mu1>0.8</mu1>
+      <mu2>0.8</mu2>
+      <minDepth>0.001</minDepth>
+    </gazebo>
+
+     <!--link4-->
+  <gazebo reference="${prefix}/arm_link4">
+    <material>Gazebo/Grey</material>
+      <mu1>0.8</mu1>
+      <mu2>0.8</mu2>
+      <minDepth>0.001</minDepth>
+  </gazebo>  
+
+  <!--link5-->
+  <gazebo reference="${prefix}/arm_link5">
+    <material>Gazebo/DarkGrey</material>
+      <mu1>0.8</mu1>
+      <mu2>0.8</mu2>
+      <minDepth>0.001</minDepth>
+  </gazebo>
+
+  <!--link6-->
+  <gazebo reference="${prefix}/arm_link6">
+    <material>Gazebo/Grey</material>
+      <mu1>0.8</mu1>
+      <mu2>0.8</mu2>
+      <minDepth>0.001</minDepth>
+  </gazebo>  
+
+  <!--link7-->
+  <gazebo reference="${prefix}/arm_link7">
+    <material>Gazebo/DarkGrey</material>
+      <mu1>0.8</mu1>
+      <mu2>0.8</mu2>
+      <minDepth>0.001</minDepth>
+  </gazebo>
+
+    <!--link8-->
+    <gazebo reference="${prefix}/arm_link8">
+      <material>Gazebo/Grey</material>
+      <mu1>0.8</mu1>
+      <mu2>0.8</mu2>
+      <minDepth>0.001</minDepth>
+    </gazebo>
+
+
+    <!--virtual_end_effector-->
+    <gazebo reference="${prefix}/virtual_end_effector">
+      <material>Gazebo/GreyTransparent</material>
+      <mu1>0.8</mu1>
+      <mu2>0.8</mu2>
+      <minDepth>0.001</minDepth>
+      <kp>0.2</kp>
+    </gazebo>
+
+  </xacro:macro>
+</robot>

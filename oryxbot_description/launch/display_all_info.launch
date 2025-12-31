@@ -1,0 +1,17 @@
+<launch>
+<!--启动前激光雷达-->
+<include file="$(find ydlidar_ros_driver)/launch/oryxbot_front_lidar.launch"/>
+<!--启动后激光雷达-->
+<include file="$(find ydlidar_ros_driver)/launch/oryxbot_back_lidar.launch"/>
+<!--启动底盘相机-->
+<include file="$(find ar_pose)/launch/usbcam_base.launch"/>
+<!--启动手臂相机-->
+<include file="$(find ar_pose)/launch/usbcam_hand.launch"/>
+<!--加载机器人三维模型-->
+<include file="$(find oryxbot_description)/launch/local_display.launch"/>
+<!--启动车体控制程序，反馈车体位姿信息-->
+<include file="$(find oryxbot_base)/launch/oryxbot_base.launch"/>
+<!--启动手臂控制程序，反馈手臂末端位姿信息-->
+<include file="$(find arm_controller)/launch/arm_controller.launch"/>
+</launch>
+

@@ -1,0 +1,5 @@
+<launch>
+  
+	<include file="$(find relative_move)/launch/relative_move.launch"/>
+	<include file="$(find ar_pose)/launch/ar_base_sim.launch"/>
+</launch>

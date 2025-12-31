@@ -1,0 +1,4 @@
+<launch>
+	<include file="$(find oryxbot_description)/launch/ar_hand_gazebo.launch"/>
+	<node pkg="oryxbot_description" type="pick_ar_gazebo" name="pick_ar_gazebo" output="screen"/>
+</launch>
